@@ -2,6 +2,16 @@
 
 \begin{document}
 
-\blurb{Sayan Chaudhry}{Pittsburgh, PA}{hi@sayan.io}{(412) 628-6515}
+\header{Sayan Chaudhry}{Pittsburgh, PA}{hi@sayan.io}{(412) 628-6515}
+
+\lhs{
+    \sectiontitle{Education}
+    \program{School of Computer Science, Carnegie Mellon University}{Bachelor of Science}{Computer Science}{May 2021}
+    \minors{Human-Computer Interaction}{Business Administration}
+    \qpa{4.0 (Dean's List)}
+    \coursework{Operating System Design and Implementation*}{Introduction to Computer Systems}{Parallel and Sequential Data Structures and Algorithms}{Introduction to Machine Learning}{Designing Human Centered Software}
+
+    \sectiontitle{Skills}
+}
 
 \end{document}
