@@ -12,6 +12,8 @@
     \coursework{Operating System Design and Implementation*}{Introduction to Computer Systems}{Parallel and Sequential Data Structures and Algorithms}{Introduction to Machine Learning}{Designing Human Centered Software}
 
     \sectiontitle{Skills}
+    \skillset{Programming and Scripting}{Python}{C/C++}{SML}{React}{Swift}{Java}
+    \skillset{Technologies and Frameworks}{Linux}{Git}{TensorFlow}{SQL}{MongoDB}{OpenCV}{RESTful APIs}
 }
 
 \end{document}

@@ -2,49 +2,80 @@
 \NeedsTeXFormat{LaTeX2e}
 \ProvidesClass{paws}[2019/07/10 Paws Class]
 
-% Inherit from `article'
+% Define Constants
+\newcommand{\HMARGIN}{0.75cm}
+\newcommand{\VMARGIN}{0.75cm}
+
+% Define Breaks
+\newcommand{\subsectionbreak}{\vspace{0.2cm}}
+\newcommand{\sectionbreak}{\vspace{0.2cm}}
+
+% Inherit `article'
 \LoadClass[10pt]{article}
 \DeclareOption*{\PassOptionsToClass{\CurrentOption}{article}}
 \ProcessOptions\relax
 
 % Set Margins
-\newcommand{\HMARGIN}{0.75cm}
-\newcommand{\VMARGIN}{0.75cm}
 \usepackage[hmargin=\HMARGIN, vmargin=\VMARGIN]{geometry}
 
 % Set Indents
 \setlength{\parindent}{0in}
 
-% Fonts
+% Import Fonts
 \usepackage{fontspec}
-\newcommand{\namefont}{
+\setmainfont{Lato}
+\newcommand{\titlefont}{
     \fontspec[Path=fonts/]{ProductSans-Bold.ttf}
 }
-\setmainfont{Lato}
 
-% Header
-\newcommand{\header}[2]{
-    \name{#1}
-    \\ \bio{#2}
-}
-
-\newcommand{\name}[1]{
-    {\huge \namefont #1}
-}
-
+% Helper Components
+% Standard List
 \makeatletter 
-% This code can use @ in macro names.
-\newcommand{\bio}[1]{
-    #1\@ifnextchar\bgroup{\recursebio}{}
+\newcommand{\standardlist}[1]{
+    \\#1\@ifnextchar\bgroup{\recursestandardlist}{\\\subsectionbreak}
 }
-\newcommand{\recursebio}[1]{~\textperiodcentered~#1\@ifnextchar\bgroup{\recursebio}{\headerbreak}}
+\newcommand{\recursestandardlist}[1]{\\#1\@ifnextchar\bgroup{\recursestandardlist}{\\\subsectionbreak}}
 \makeatother
 
-% Breaks
-\newcommand{\headerbreak}{\vspace{0.5cm}}
-\renewcommand{\linebreak}{\\\vspace{0.05cm}}
-\newcommand{\subsectionbreak}{\\\vspace{0.15cm}}
-\newcommand{\sectionbreak}{\vspace{0.5cm}}
+% Bulleted List
+\usepackage{enumitem}
+\makeatletter 
+\newcommand{\bulletedlist}[1]{
+    \begin{itemize}[itemsep=0cm,parsep=0.05cm,topsep=0cm,leftmargin=-\itemindent]
+    \item #1
+    \@ifnextchar\bgroup{\recursebulletedlist}{\end{itemize}\subsectionbreak}
+}
+\newcommand{\recursebulletedlist}[1]{
+    \item #1
+    \@ifnextchar\bgroup{\recursebulletedlist}{\end{itemize}\subsectionbreak}
+}
+\makeatother
+
+% Dotted List
+% The weird \mbox and \ prevents abrupt hyphenation
+\makeatletter
+\newcommand{\dottedlist}[1]{
+    \mbox{#1}\@ifnextchar\bgroup{\recursedottedlist}{\\\subsectionbreak}
+}
+\newcommand{\recursedottedlist}[1]{~\textperiodcentered\ \mbox{#1}\@ifnextchar\bgroup{\recursedottedlist}{\\\subsectionbreak}}
+\makeatother
+
+% Title
+\renewcommand{\title}[1]{
+    {\huge \titlefont #1}
+}
+
+% Subtitle
+\newcommand{\subtitle}[1]{
+    \textit{#1:}
+}
+
+% Components
+% Header
+\newcommand{\header}[2]{
+    \title{#1}
+    \\\dottedlist{#2}
+}
 
 % LHS
 \newcommand{\lhs}[1]{
@@ -56,43 +87,39 @@
 
 % Section Title
 \newcommand{\sectiontitle}[1]{
-    {\Large \namefont #1} \\[0.2cm]
+    \sectionbreak
+    {\Large \titlefont #1}
+    \\\subsectionbreak
 }
 
 % Program
 \newcommand{\program}[4]{
     \textbf{#1}
-    \linebreak \textit{#2}
-    \linebreak #3, #4
-    \subsectionbreak
+    \\\textit{#2}
+    \\#3, #4
+    \\\subsectionbreak
 }
 
 % Minors
-\makeatletter 
-% This code can use @ in macro names.
 \newcommand{\minors}[1]{
-    \textit{Additional Minors:}
-    \linebreak
-    #1\@ifnextchar\bgroup{\recurseminors}{\subsectionbreak}
+    \subtitle{Additional Minors}
+    \standardlist{#1}
 }
-\newcommand{\recurseminors}[1]{\\#1\@ifnextchar\bgroup{\recursebio}{\subsectionbreak}}
-\makeatother
 
 % QPA
 \newcommand{\qpa}[1]{
-    \textit{QPA:} #1
-    \subsectionbreak
+    \subtitle{QPA} #1
+    \\\subsectionbreak
 }
 
-%
-\usepackage{enumitem}
-
-\makeatletter 
+% Coursework
 \newcommand{\coursework}[1]{
-    \textit{Relevant Coursework:}
-    \begin{itemize}[itemsep=0cm,parsep=0.05cm,topsep=0cm,leftmargin=-\itemindent]
-    \item #1
-    \@ifnextchar\bgroup{\recursecoursework}{\end{itemize} \sectionbreak}
+    \subtitle{Relevant Coursework}
+    \bulletedlist{#1}
 }
-\newcommand{\recursecoursework}[1]{\item #1\@ifnextchar\bgroup{\recursecoursework}{\end{itemize} \sectionbreak}}
-\makeatother
+
+% Skill Section
+\newcommand{\skillset}[2]{
+    \subtitle{#1}
+    \\\dottedlist{#2}
+}
