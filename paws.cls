@@ -24,11 +24,13 @@
 % Import Fonts
 \usepackage{fontspec}
 \setmainfont{Lato}
-\newcommand{\titlefont}{
+\newcommand{\headingfont}{
     \fontspec[Path=fonts/]{ProductSans-Bold.ttf}
 }
 
 % Helper Components
+\renewcommand{\cdot}{\textperiodcentered}
+
 % Standard List
 \makeatletter 
 \newcommand{\standardlist}[1]{
@@ -57,12 +59,17 @@
 \newcommand{\dottedlist}[1]{
     \mbox{#1}\@ifnextchar\bgroup{\recursedottedlist}{\\\subsectionbreak}
 }
-\newcommand{\recursedottedlist}[1]{~\textperiodcentered\ \mbox{#1}\@ifnextchar\bgroup{\recursedottedlist}{\\\subsectionbreak}}
+\newcommand{\recursedottedlist}[1]{\ \cdot\ \mbox{#1}\@ifnextchar\bgroup{\recursedottedlist}{\\\subsectionbreak}}
 \makeatother
+
+% Heading
+\newcommand{\heading}[1]{
+    {\huge \headingfont #1}
+}
 
 % Title
 \renewcommand{\title}[1]{
-    {\huge \titlefont #1}
+    \textbf{#1}
 }
 
 % Subtitle
@@ -70,10 +77,16 @@
     \textit{#1:}
 }
 
+% if...then...else
+\usepackage{ifthen}
+\newcommand{\ifexists}[2]{
+    \ifthenelse{\equal{#1}{}}{}{#2}
+}
+
 % Components
 % Header
 \newcommand{\header}[2]{
-    \title{#1}
+    \heading{#1}
     \\\dottedlist{#2}
 }
 
@@ -85,10 +98,18 @@
     \end{minipage}
 }
 
+% RHS
+\newcommand{\rhs}[1]{
+    \begin{minipage}[t]{0.7\textwidth}
+        \raggedright
+        #1
+    \end{minipage}
+}
+
 % Section Title
 \newcommand{\sectiontitle}[1]{
     \sectionbreak
-    {\Large \titlefont #1}
+    {\Large \headingfont #1}
     \\\subsectionbreak
 }
 
@@ -122,4 +143,11 @@
 \newcommand{\skillset}[2]{
     \subtitle{#1}
     \\\dottedlist{#2}
+}
+
+% Mini Passport
+\newcommand{\minipassport}[3]{
+    \title{#1}
+    \\#2\ifexists{#3}{\cdot\ #3}
+    \\\subsectionbreak
 }
