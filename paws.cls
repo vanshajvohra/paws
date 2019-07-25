@@ -29,8 +29,6 @@
 }
 
 % Helper Components
-\renewcommand{\cdot}{\textperiodcentered}
-
 % Standard List
 \makeatletter 
 \newcommand{\standardlist}[1]{
@@ -41,9 +39,10 @@
 
 % Bulleted List
 \usepackage{enumitem}
+\usepackage{mathabx}
 \makeatletter 
 \newcommand{\bulletedlist}[1]{
-    \begin{itemize}[itemsep=0cm,parsep=0.05cm,topsep=0cm,leftmargin=-\itemindent]
+    \begin{itemize}[itemsep=0cm,parsep=0.05cm,topsep=0cm,leftmargin=-\itemindent,label=$\sqbullet$]
     \item #1
     \@ifnextchar\bgroup{\recursebulletedlist}{\end{itemize}\subsectionbreak}
 }
@@ -54,6 +53,8 @@
 \makeatother
 
 % Dotted List
+\renewcommand{\cdot}{\textperiodcentered}
+
 % The weird \mbox and \ prevents abrupt hyphenation
 \makeatletter
 \newcommand{\dottedlist}[1]{
@@ -79,8 +80,12 @@
 
 % if...then...else
 \usepackage{ifthen}
-\newcommand{\ifexists}[2]{
-    \ifthenelse{\equal{#1}{}}{}{#2}
+\newcommand{\ifexists}[2]{%
+    \ifthenelse{\equal{#1}{}}{}{#2}%
+}
+
+\newcommand{\ifexiststwo}[3]{
+    \ifexists{#1}{\ifexists{#2}{#3}}
 }
 
 % Components
@@ -92,7 +97,7 @@
 
 % LHS
 \newcommand{\lhs}[1]{
-    \begin{minipage}[t]{0.27\textwidth}
+    \begin{minipage}[t]{0.25\textwidth}
         \raggedright
         #1
     \end{minipage}
@@ -100,7 +105,7 @@
 
 % RHS
 \newcommand{\rhs}[1]{
-    \begin{minipage}[t]{0.7\textwidth}
+    \begin{minipage}[t]{0.73\textwidth}
         \raggedright
         #1
     \end{minipage}
@@ -148,6 +153,12 @@
 % Mini Passport
 \newcommand{\minipassport}[3]{
     \title{#1}
-    \\#2\ifexists{#3}{\cdot\ #3}
+    \\#2\ifexiststwo{#2}{#3}{\cdot}#3
     \\\subsectionbreak
+}
+
+% Passport
+\newcommand{\passport}[4]{
+    \title{#1}\ifexists{#2}{\cdot\ }#2\hfill\textit{#3}
+    \\\bulletedlist{#4}
 }

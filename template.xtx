@@ -23,6 +23,11 @@
 \hfill
 \rhs{
     \sectiontitle{Work Experience}
+    \passport{Yelp}{Software Engineering Intern}{May 2019 - August 2019}{Introduced portfolios on the web as a way for businesses to highlight their distinctive products}{Worked on migrating business pages to React from Cheetah templates by extracting all features into their own reusable components as part of the Core Experience team}
+    \passport{PreCog Research Lab}{Summer Research Intern}{May 2018 - July 2018}{Used TensorFlow and MLKit to identify and analyze dangerous selfies on social media as part of the \#Killfie project under Prof. Ponnurangam Kumaraguru}{ Developed an Android app to detect unsafe selfie taking behavior and warn users in real time}
+    \passport{Language Technologies Institute}{Research Assistant}{February 2018 – May 2018}{Extracted tabular data from WWW pages to help build a new web-browsing modality for the blind as part of the SayHear project}{Wrote MySQL queries to train ML algorithms how to extract relevant information from parsed tables}
+
+    \sectiontitle{Selected Projects}
 }
 
 \end{document}
