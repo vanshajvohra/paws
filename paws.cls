@@ -69,8 +69,8 @@
 }
 
 % Title
-\renewcommand{\title}[1]{
-    \textbf{#1}
+\renewcommand{\title}[1]{%
+    \textbf{#1}%
 }
 
 % Subtitle
@@ -84,8 +84,8 @@
     \ifthenelse{\equal{#1}{}}{}{#2}%
 }
 
-\newcommand{\ifexiststwo}[3]{
-    \ifexists{#1}{\ifexists{#2}{#3}}
+\newcommand{\ifexiststwo}[3]{%
+    \ifexists{#1}{\ifexists{#2}{#3}}%
 }
 
 % Components
@@ -96,7 +96,7 @@
 }
 
 % LHS
-\newcommand{\lhs}[1]{
+\newcommand{\lhs}[1]{%
     \begin{minipage}[t]{0.25\textwidth}
         \raggedright
         #1
@@ -104,8 +104,8 @@
 }
 
 % RHS
-\newcommand{\rhs}[1]{
-    \begin{minipage}[t]{0.73\textwidth}
+\newcommand{\rhs}[1]{%
+    \begin{minipage}[t]{0.7 \textwidth}
         \raggedright
         #1
     \end{minipage}
@@ -132,9 +132,9 @@
     \standardlist{#1}
 }
 
-% QPA
-\newcommand{\qpa}[1]{
-    \subtitle{QPA} #1
+% Score
+\newcommand{\score}[2]{
+    \subtitle{#1} #2
     \\\subsectionbreak
 }
 
@@ -152,13 +152,14 @@
 
 % Mini Passport
 \newcommand{\minipassport}[3]{
-    \title{#1}
-    \\#2\ifexiststwo{#2}{#3}{\cdot}#3
+    \title{#1}%
+    \ifexiststwo{#1}{#2#3}{\\}%
+    \textit{#2}\ifexiststwo{#2}{#3}{,\ }#3
     \\\subsectionbreak
 }
 
 % Passport
 \newcommand{\passport}[4]{
-    \title{#1}\ifexists{#2}{\cdot\ }#2\hfill\textit{#3}
+    \title{#1}\ifexists{#2}{\ \cdot\ }#2\hfill{\footnotesize#3}
     \\\bulletedlist{#4}
 }

@@ -3,12 +3,11 @@
 \begin{document}
 
 \header{Sayan Chaudhry}{Pittsburgh, PA}{hi@sayan.io}{(412) 628-6515}
-
 \lhs{
     \sectiontitle{Education}
     \program{School of Computer Science, Carnegie Mellon University}{Bachelor of Science}{Computer Science}{May 2021}
     \minors{Human-Computer Interaction}{Business Administration}
-    \qpa{4.0 (Dean's List)}
+    \score{QPA}{4.0 (Dean's List)}
     \coursework{Operating System Design and Implementation*}{Introduction to Computer Systems}{Parallel and Sequential Data Structures and Algorithms}{Introduction to Machine Learning}{Designing Human Centered Software}
 
     \sectiontitle{Skills}
@@ -16,18 +15,30 @@
     \skillset{Technologies and Frameworks}{Linux}{Git}{TensorFlow}{SQL}{MongoDB}{OpenCV}{RESTful APIs}
 
     \sectiontitle{Activities}
-    \minipassport{Great Ideas in Theoretical Computer Science}{Teaching Assistant}{}
-    \minipassport{ScottyLabs}{Director}{}
-    \minipassport{TartanHacks}{Lead Organizer}{}
+    \minipassport{Great Ideas in Theoretical Computer Science}{}{Teaching Assistant}
+    \minipassport{ScottyLabs}{}{Director}
+    \minipassport{TartanHacks}{}{Lead Organizer}
 }
 \hfill
 \rhs{
     \sectiontitle{Work Experience}
-    \passport{Yelp}{Software Engineering Intern}{May 2019 - August 2019}{Introduced portfolios on the web as a way for businesses to highlight their distinctive products}{Worked on migrating business pages to React from Cheetah templates by extracting all features into their own reusable components as part of the Core Experience team}
+    \passport{Yelp}{Software Engineering Intern}{May 2019 - August 2019}{Introduced portfolios on the web as a direct monetization feature for businesses to highlight their distinctive products and boost search CTRs}{Worked on migrating business pages to React from Cheetah templates by extracting all features into their own reusable components as part of the Core Experience team}
     \passport{PreCog Research Lab}{Summer Research Intern}{May 2018 - July 2018}{Used TensorFlow and MLKit to identify and analyze dangerous selfies on social media as part of the \#Killfie project under Prof. Ponnurangam Kumaraguru}{ Developed an Android app to detect unsafe selfie taking behavior and warn users in real time}
     \passport{Language Technologies Institute}{Research Assistant}{February 2018 – May 2018}{Extracted tabular data from WWW pages to help build a new web-browsing modality for the blind as part of the SayHear project}{Wrote MySQL queries to train ML algorithms how to extract relevant information from parsed tables}
 
     \sectiontitle{Selected Projects}
+    \passport{No Duckling is Ugly}{PennApps Fall 2018}{}{Developed a scalable IoT system to tackle the problem of bullying in schools by conducting sentiment analysis and voice model recognition using a RESTful API for CRUD operations}{The project won the Best Education Hack and the Best IoT Hack awards at the hackathon}
+    \passport{ezxkcd}{PennApps Winter 2018}{}{Created a media recommendation algorithm using sentiment analysis that suggested xkcd comics by recognizing the user’s current mood using OpenCV and Tensorflow with a 3-member team}{The project was among the top 30 hacks at the hackathon}
+    \passport{VideoLingo}{HackCMU 2017}{}{Created a desktop platform in Python that helps users learn new languages by using community translated YouTube closed captions with a 4-member team}{The project was named the ‘Most Likely to be the Next Million Dollar Startup’}
+    \passport{Bhasha Technologies}{BharatHacks 2017}{}{Developed an accessibility solution in Python with 4-member team to translate and dub the audio track of any YouTube video into Indian regional languages in real time}{The project won the first prize at the hackathon and is part of IBM’s Global Entrepreneur network}
+
+    \sectiontitle{Research}
+    \minipassport{Novel Defense Against Code Theft Using Properties of Fibonacci Series}{Presenter}{SIGBOVIK 2019}
+    \minipassport{Data Management Device to Enhance Cellular Connectivity in Rural Areas {\normalfont (Patent Pending)}}{Awardee}{Dr APJ Abdul Kalam IGNITE Award 2016 by National Innovation Foundation}
+    % \minipassport{Computation Model for Detection and Profiling of Antimicrobial Resistance in N. gonorrhoeae}{National Finalist}{Intel IRIS National Science Fair}
+
+    \sectiontitle{Honors and Experience}
+    \bulletedlist{\minipassport{}{International Rank 1}{National Cyber Olympiad 2015 (held in 22 countries)}}{\minipassport{}{Honorable Mention}{NASA Ames Space Settlement Contest}}{\minipassport{}{Second Runners Up}{Computer Society of India’s Young Talent in Computer Programming}}
 }
 
 \end{document}
