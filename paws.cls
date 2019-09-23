@@ -8,7 +8,7 @@
 
 % Define Breaks
 \newcommand{\subsectionbreak}{\vspace{0.2cm}}
-\newcommand{\sectionbreak}{\vspace{0.2cm}}
+\newcommand{\minibreak}{\vspace{0.05cm}}
 
 % Inherit `article'
 \LoadClass[10pt]{article}
@@ -21,12 +21,17 @@
 % Set Indents
 \setlength{\parindent}{0in}
 
+% Set Line Spacing
+\renewcommand{\baselinestretch}{1.12} 
+
 % Import Fonts
 \usepackage{fontspec}
 \setmainfont{Lato}
 \newcommand{\headingfont}{
     \fontspec[Path=fonts/]{ProductSans-Bold.ttf}
 }
+
+\usepackage{fontawesome5}
 
 % Helper Components
 % Standard List
@@ -37,7 +42,7 @@
 \newcommand{\recursestandardlist}[1]{\\#1\@ifnextchar\bgroup{\recursestandardlist}{\\\subsectionbreak}}
 \makeatother
 
-% Bulleted List
+% Bulleted List (Square)
 \usepackage{enumitem}
 \usepackage{mathabx}
 \makeatletter 
@@ -54,12 +59,11 @@
 
 % Dotted List
 \renewcommand{\cdot}{\textperiodcentered}
-
-% The weird \mbox and \ prevents abrupt hyphenation
 \makeatletter
 \newcommand{\dottedlist}[1]{
     \mbox{#1}\@ifnextchar\bgroup{\recursedottedlist}{\\\subsectionbreak}
 }
+% The weird \mbox and \ prevents abrupt hyphenation
 \newcommand{\recursedottedlist}[1]{\ \cdot\ \mbox{#1}\@ifnextchar\bgroup{\recursedottedlist}{\\\subsectionbreak}}
 \makeatother
 
@@ -74,25 +78,8 @@
 }
 
 % Subtitle
-\newcommand{\subtitle}[1]{
+\newcommand{\subtitle}[1]{%
     \textit{#1:}
-}
-
-% if...then...else
-\usepackage{ifthen}
-\newcommand{\ifexists}[2]{%
-    \ifthenelse{\equal{#1}{}}{}{#2}%
-}
-
-\newcommand{\ifexiststwo}[3]{%
-    \ifexists{#1}{\ifexists{#2}{#3}}%
-}
-
-% Components
-% Header
-\newcommand{\header}[2]{
-    \heading{#1}
-    \\\dottedlist{#2}
 }
 
 % LHS
@@ -105,21 +92,40 @@
 
 % RHS
 \newcommand{\rhs}[1]{%
-    \begin{minipage}[t]{0.7 \textwidth}
+    \begin{minipage}[t]{0.7\textwidth}
         \raggedright
         #1
     \end{minipage}
 }
 
+% if...then...else Components
+% ifexiststs
+\usepackage{ifthen}
+\newcommand{\ifexists}[2]{%
+    \ifthenelse{\equal{#1}{}}{}{#2}%
+}
+
+% ifexiststwo
+\newcommand{\ifexiststwo}[3]{%
+    \ifexists{#1}{\ifexists{#2}{#3}}%
+}
+
+% Resume Components
+% Header
+\newcommand{\header}[2]{
+    \heading{#1}
+    \\[0.2em]\dottedlist{#2}
+}
+
 % Section Title
 \newcommand{\sectiontitle}[1]{
-    \sectionbreak
+    \subsectionbreak
     {\Large \headingfont #1}
     \\\subsectionbreak
 }
 
 % Program
-\newcommand{\program}[4]{
+\newcommand{\school}[4]{
     \textbf{#1}
     \\\textit{#2}
     \\#3, #4
@@ -132,15 +138,27 @@
     \standardlist{#1}
 }
 
-% Score
-\newcommand{\score}[2]{
-    \subtitle{#1} #2
+% GPA
+\newcommand{\gpa}[1]{
+    \subtitle{GPA}#1
+    \\\subsectionbreak
+}
+
+% QPA
+\newcommand{\qpa}[1]{
+    \subtitle{QPA}#1
     \\\subsectionbreak
 }
 
 % Coursework
 \newcommand{\coursework}[1]{
     \subtitle{Relevant Coursework}
+    \bulletedlist{#1}
+}
+
+% Teaching Assistant
+\newcommand{\ta}[1]{
+    \subtitle{Teaching Assistant}
     \bulletedlist{#1}
 }
 
@@ -155,11 +173,13 @@
     \title{#1}%
     \ifexiststwo{#1}{#2#3}{\\}%
     \textit{#2}\ifexiststwo{#2}{#3}{,\ }#3
-    \\\subsectionbreak
+    \ifexiststwo{#1}{#2#3}{\\\subsectionbreak}%
 }
 
 % Passport
-\newcommand{\passport}[4]{
+\newcommand{\passport}[6]{
     \title{#1}\ifexists{#2}{\ \cdot\ }#2\hfill{\footnotesize#3}
-    \\\bulletedlist{#4}
+    \ifexiststwo{#1}{#4#5}{\\\minibreak}%
+    \textit{#4}\ifexiststwo{#4}{#5}{,\ }#5
+    \minibreak\bulletedlist{#6}
 }
